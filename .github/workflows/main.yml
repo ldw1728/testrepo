@@ -10,10 +10,14 @@ jobs:
 
     steps:
       - name: deploy
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: joutvhu/ftp-transfer@v1.0.0
         with:
-          ftp-server: 211.106.171.118
-          ftp-username: root
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: /test
+          host: 211.106.171.118
+          port: 21
+          username: root
+          password: ${{ secrets.FTP_PASSWORD }}
+          commands: put ./ /test
+        
+
+           
         
