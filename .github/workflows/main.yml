@@ -16,14 +16,17 @@ jobs:
           pwd
           ls -al
       - name: deploy
-        uses: sand4rt/ftp-deployer@v1.7
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          host: 211.106.171.118
-          port: 22 # optional, default is: 21
-          username: root # FTP username
-          password: ${{ secrets.FTP_PASSWORD }} # FTP password
-          remote_folder: /test # optional, remote path of your FTP server
-          local_folder: ./ # optional, local path, default is: dist
+          username: ec2-user
+          server: 13.125.250.63
+          port: 22
+          ssh_private_key: ${{ secrets.FTP_SSH_KEY }}
+          local_path: ./*
+          remote_path: /prod/app/publishing/test/
+
+          
+          
 
           
           
