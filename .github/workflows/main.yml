@@ -16,13 +16,17 @@ jobs:
           pwd
           ls -al
       - name: deploy
-        uses: joutvhu/ftp-transfer@v1.0.0
+        uses: sand4rt/ftp-deployer@v1.7
         with:
           host: 211.106.171.118
-          port: 22
-          username: root
-          password: ${{ secrets.FTP_PASSWORD }}
-          commands:  put . /test
+          port: 22 # optional, default is: 21
+          username: root # FTP username
+          password: ${{ secrets.FTP_PASSWORD }} # FTP password
+          remote_folder: /test # optional, remote path of your FTP server
+          local_folder: ./ # optional, local path, default is: dist
+
+          
+          
            
         
 
