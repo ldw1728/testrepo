@@ -22,7 +22,7 @@ jobs:
           host: 13.125.250.63
           port: 22
           privateKey: ${{ secrets.FTP_SSH_KEY }}
-          localPath: ./*
+          localPath: ./
           remotePath: /prod/app/publishing/test/
           
           
