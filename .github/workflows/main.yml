@@ -11,28 +11,18 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: checkout
-        uses: actions/checkout@v3
-        with: 
-          fetch-depth: 2
-      - run: | 
-          ls -al
-          mkdir chngdfiles
-          ls -al
-          git log -a
-          cp -r `git diff HEAD HEAD^ --name-only` ./chngdfiles
-          cd chngdfiles
-          ls -al
+        
+      - run: rm -rf .git .github .gitignore
           
-      # - name: deploy
-      #   uses: Creepios/sftp-action@v1.0.3
-      #   with:
-      #     username: ec2-user
-      #     host: 13.125.250.63
-      #     port: 22
-      #     privateKey: ${{ secrets.FTP_SSH_KEY }}
-      #     localPath: ./
-      #     remotePath: /prod/app/publishing/test/
+      - name: deploy
+        uses: Creepios/sftp-action@v1.0.3
+        with:
+          username: ec2-user
+          host: 13.125.250.63
+          port: 22
+          privateKey: ${{ secrets.FTP_SSH_KEY }}
+          localPath: ./
+          remotePath: /prod/app/publishing/test/
           
           
 
