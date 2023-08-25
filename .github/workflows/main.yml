@@ -11,19 +11,24 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: check
-        run: |
-          pwd
+      - run: | 
           ls -al
-      - name: deploy
-        uses: Creepios/sftp-action@v1.0.3
-        with:
-          username: ec2-user
-          host: 13.125.250.63
-          port: 22
-          privateKey: ${{ secrets.FTP_SSH_KEY }}
-          localPath: ./
-          remotePath: /prod/app/publishing/test/
+          mkdir chngdfiles
+          ls -al
+          git log -a
+          cp `git diff HEAD HEAD^ --name-only` ./chngdfiles
+          cd chngdfiles
+          ls -al
+          
+      # - name: deploy
+      #   uses: Creepios/sftp-action@v1.0.3
+      #   with:
+      #     username: ec2-user
+      #     host: 13.125.250.63
+      #     port: 22
+      #     privateKey: ${{ secrets.FTP_SSH_KEY }}
+      #     localPath: ./
+      #     remotePath: /prod/app/publishing/test/
           
           
 
