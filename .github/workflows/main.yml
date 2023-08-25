@@ -15,7 +15,7 @@ jobs:
           ls -al
           mkdir chngdfiles
           ls -al
-          cp `git diff HEAD HEAD~1 --name-only` ./chngdfiles
+          cp `git diff HEAD HEAD^ --name-only` ./chngdfiles
           cd chngdfiles
           ls -al
           
